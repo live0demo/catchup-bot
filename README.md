@@ -28,6 +28,7 @@ Built to be deployable in ~5 minutes on a small VPS, Render, Railway, or any Doc
 |---|---|
 | `/start` | Welcome + quick reference |
 | `/help` | Full help including limitations |
+| `/tutorials` | Worked, copy-pasteable examples for every feature |
 | `/markread` | Set checkpoint here for you in this chat (manual) |
 | `/catchup` | Summarize messages since your checkpoint (medium) |
 | `/catchup_short` | Compact summary |
