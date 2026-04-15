@@ -28,7 +28,7 @@ Built to be deployable in ~5 minutes on a small VPS, Render, Railway, or any Doc
 |---|---|
 | `/start` | Welcome + quick reference |
 | `/help` | Full help including limitations |
-| `/markread` | Set checkpoint here for you in this chat |
+| `/markread` | Set checkpoint here for you in this chat (manual) |
 | `/catchup` | Summarize messages since your checkpoint (medium) |
 | `/catchup_short` | Compact summary |
 | `/catchup_detailed` | Full chronological digest + sections |
@@ -37,6 +37,11 @@ Built to be deployable in ~5 minutes on a small VPS, Render, Railway, or any Doc
 | `/list_reminders` | List your active reminders |
 | `/delete_reminder <id>` | Cancel a reminder |
 | `/set_timezone <IANA>` | e.g. `Europe/Berlin`, `America/Los_Angeles` |
+
+> **Auto-checkpoint:** when you send any non-command message in a group,
+> your checkpoint for that group is automatically advanced to that message.
+> So `/catchup` for active members shows "everything since I last spoke."
+> Lurkers who never type still need `/markread`.
 
 ### Reminder syntax
 
