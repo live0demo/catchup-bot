@@ -38,6 +38,7 @@ class Settings:
     llm_api_key: str
     llm_base_url: str
     llm_model: str
+    summary_language: str
 
     @property
     def llm_enabled(self) -> bool:
@@ -60,6 +61,7 @@ settings = Settings(
     llm_api_key=_get("LLM_API_KEY", ""),
     llm_base_url=_get("LLM_BASE_URL", "https://api.openai.com/v1"),
     llm_model=_get("LLM_MODEL", "gpt-4o-mini"),
+    summary_language=_get("SUMMARY_LANGUAGE", "auto"),
 )
 
 

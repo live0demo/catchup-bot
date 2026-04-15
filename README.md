@@ -38,6 +38,7 @@ Built to be deployable in ~5 minutes on a small VPS, Render, Railway, or any Doc
 | `/list_reminders` | List your active reminders |
 | `/delete_reminder <id>` | Cancel a reminder |
 | `/set_timezone <IANA>` | e.g. `Europe/Berlin`, `America/Los_Angeles` |
+| `/ask <question>` | Free-form Q&A backed by the configured LLM (requires `LLM_API_KEY`) |
 
 > **Auto-checkpoint:** when you send any non-command message in a group,
 > your checkpoint for that group is automatically advanced to that message.
@@ -58,6 +59,50 @@ Built to be deployable in ~5 minutes on a small VPS, Render, Railway, or any Doc
 ```
 
 If the time of day is missing (e.g. `/remind tomorrow buy bread`), the bot defaults to **09:00 in your timezone** and asks you to confirm with inline buttons.
+
+---
+
+## Optional: enable the AI (free providers, no card required)
+
+The bot ships with a built-in extractive summarizer that always works. To
+upgrade to an LLM (better summaries + the `/ask` command), set three env
+vars. Pick **one** provider:
+
+### Google Gemini (recommended for Vietnamese)
+1. Open https://aistudio.google.com/apikey → **Create API key** (uses your Google account, no card).
+2. Set in `.env` / Replit Secrets:
+   ```
+   LLM_API_KEY=<paste key>
+   LLM_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai
+   LLM_MODEL=gemini-2.0-flash
+   SUMMARY_LANGUAGE=Vietnamese
+   ```
+   Free quota: 1500 req/day, 15 req/min. More than enough for a personal bot.
+
+### Groq (very fast, generous quota)
+1. Open https://console.groq.com/keys → sign up (no card) → **Create API Key**.
+2. Set:
+   ```
+   LLM_API_KEY=<paste key>
+   LLM_BASE_URL=https://api.groq.com/openai/v1
+   LLM_MODEL=llama-3.3-70b-versatile
+   SUMMARY_LANGUAGE=Vietnamese
+   ```
+   Free quota: 14,400 req/day.
+
+### OpenRouter (mix of free models)
+1. Open https://openrouter.ai/keys → sign up → create key.
+2. Set:
+   ```
+   LLM_API_KEY=<paste key>
+   LLM_BASE_URL=https://openrouter.ai/api/v1
+   LLM_MODEL=meta-llama/llama-3.3-70b-instruct:free
+   SUMMARY_LANGUAGE=Vietnamese
+   ```
+
+After updating Secrets/`.env`, restart the bot. `/catchup` summaries and
+`/ask` answers will use the LLM. If the LLM call fails (quota / network /
+bad key), summaries fall back to the local extractive summarizer.
 
 ---
 

@@ -74,7 +74,14 @@ async def tutorials(msg: Message) -> None:
         "  <code>/set_timezone Europe/Berlin</code>\n"
         "  <code>/autosummary on</code>      <code>/autosummary off</code>\n\n"
 
-        "<b>6️⃣ Use me in a group</b>\n"
+        "<b>6️⃣ Ask the AI anything</b> (needs LLM_API_KEY)\n"
+        "  <code>/ask viết email xin nghỉ phép 2 ngày</code>\n"
+        "  <code>/ask giải thích Docker volume cho người mới</code>\n"
+        "  <code>/ask tóm tắt sự kiện ngày 30/4/1975</code>\n"
+        "<i>Tip:</i> set <code>SUMMARY_LANGUAGE=Vietnamese</code> in env to force "
+        "all AI replies in Vietnamese, even when the input is mixed.\n\n"
+
+        "<b>7️⃣ Use me in a group</b>\n"
         "• Add me to the group (Add member → search my username).\n"
         "• Ask the admin: in BotFather → my bot → Bot Settings → "
         "Group Privacy → <b>Disable</b>, then re-add me.\n"
@@ -107,6 +114,7 @@ async def help_cmd(msg: Message) -> None:
         "/list_reminders\n"
         "/delete_reminder &lt;id&gt;\n"
         "/set_timezone &lt;IANA tz&gt;  e.g. <code>Europe/Berlin</code>\n"
+        "/ask &lt;question&gt; — free-form Q&amp;A (requires LLM_API_KEY)\n"
     )
     await msg.answer(text)
 

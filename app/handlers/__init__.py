@@ -3,7 +3,14 @@ from __future__ import annotations
 
 from aiogram import Dispatcher
 
-from app.handlers import basic, catchup, messages, reminders, settings as settings_handlers
+from app.handlers import (
+    ask,
+    basic,
+    catchup,
+    messages,
+    reminders,
+    settings as settings_handlers,
+)
 from app.scheduler.scheduler import ReminderScheduler
 
 
@@ -15,5 +22,6 @@ def register_handlers(dp: Dispatcher, scheduler: ReminderScheduler) -> None:
     dp.include_router(settings_handlers.router)
     dp.include_router(catchup.router)
     dp.include_router(reminders.router)
+    dp.include_router(ask.router)
     # Message-cache router last so command routers handle commands first.
     dp.include_router(messages.router)
