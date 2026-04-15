@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import os
 import signal
 
 from app.bot import build_bot_and_dispatcher
@@ -17,6 +18,12 @@ log = logging.getLogger(__name__)
 
 async def amain() -> None:
     configure_logging(settings.log_level)
+    # On Replit, REPL_ID is always set. Start a tiny HTTP server so UptimeRobot
+    # (or similar) can ping us and keep the repl from sleeping. No-op elsewhere.
+    if os.environ.get("REPL_ID"):
+        from keep_alive import keep_alive
+
+        keep_alive()
     init_db()
 
     bot, dp = build_bot_and_dispatcher()
